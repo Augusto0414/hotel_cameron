@@ -24,13 +24,19 @@ export const useHotelsStore = create<HotelsState>((set) => ({
       const possibleArray1 = data?.data?.data; // e.g., inner "data" array
       const possibleArray2 = data?.data?.hoteles; // fallback if named "hoteles"
       const possibleArray3 = data?.hoteles; // direct top-level fallback
-      const hotelsArray = Array.isArray(possibleArray1)
+      let hotelsArray = Array.isArray(possibleArray1)
         ? possibleArray1
         : Array.isArray(possibleArray2)
           ? possibleArray2
           : Array.isArray(possibleArray3)
             ? possibleArray3
             : [];
+      
+      console.log('Fetched raw hotelsArray:', hotelsArray);
+      
+      // Filter out any null/undefined entries
+      hotelsArray = hotelsArray.filter(Boolean);
+      
       set({ hotels: hotelsArray, status: 'idle', errorMessage: null });
     } catch (e) {
       set({ status: 'error', errorMessage: (e as any).message || 'Error al cargar hoteles' });

@@ -62,7 +62,7 @@ const HotelList: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hotels.map((hotel) => (
+            {hotels.filter(h => h && h.nombre).map((hotel) => (
               <div
                 key={hotel.id}
                 className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg overflow-hidden hover:border-slate-600 transition-all hover:shadow-lg"
