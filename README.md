@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# Hotel Cameron - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es el frontend del proyecto Hotel Cameron, construido con React, TypeScript y Vite.
 
-Currently, two official plugins are available:
+## Cómo ejecutar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local o de producción:
 
-## React Compiler
+1. **Instalar las dependencias:**
+   Abre una terminal en la raíz del proyecto y ejecuta el siguiente comando para instalar todos los paquetes necesarios:
+   ```bash
+   npm install
+   ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Configurar las variables de entorno:**
+   Para conectar el frontend con el backend, debes configurar la URL de la API.
+   - Renombra el archivo `.env.template` a `.env` (básicamente, elimina la extensión `.template`).
+   - Abre el nuevo archivo `.env` y busca la variable `VITE_API_URL`.
+   - Reemplaza `http://127.0.0.1:8000` por la URL base de tu backend, **asegurándote de dejar la ruta `/api/` al final**.
+   
+   Por ejemplo, si tu backend está alojado en `https://mi-backend.render.com`, el archivo `.env` debería quedar así:
+   ```env
+   VITE_API_URL=https://mi-backend.render.com/api/
+   ```
 
-## Expanding the ESLint configuration
+3. **Iniciar el servidor de desarrollo (Local):**
+   Una vez configurado el archivo `.env`, puedes iniciar la aplicación en modo desarrollo ejecutando:
+   ```bash
+   npm run dev
+   ```
+   Esto abrirá la aplicación localmente (usualmente en `http://localhost:5173`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Construir y servir para producción:**
+   Si deseas compilar el proyecto para producción y probarlo:
+   ```bash
+   npm run build
+   npm start
+   ```
